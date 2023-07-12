@@ -1,0 +1,21 @@
+.NavBar-container {
+  background-color: rgba(59, 147, 247, 0.925);
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+  padding-top: 20px;
+  width: 300px;
+  justify-content: space-around;
+}
+
+.menu-container ul li {
+  text-decoration: none;
+  list-style: none;
+}

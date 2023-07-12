@@ -1,0 +1,10 @@
+.saludo-container {
+  background-color: blanchedalmond;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 136px);
+  flex-direction: row;
+}
