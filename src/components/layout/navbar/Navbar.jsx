@@ -12,7 +12,7 @@ const Navbar = () => {
       </div>
       <div className="menu-container">
         <ul>
-          <li>Iniciodasdasda</li>
+          <li>Inicio</li>
           <li>Productos</li>
           <li>Contacto</li>
         </ul>
