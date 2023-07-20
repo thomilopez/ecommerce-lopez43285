@@ -1,6 +1,6 @@
-let array = [
+export let products = [
     {
-        id: 2,
+        id: 1,
         titulo: "Delantal #1",
         precio: 2500,
         stock: 5,
@@ -60,7 +60,7 @@ let array = [
 
     },
     {    
-        id: 5,
+        id: 7,
         titulo: "Tablero sensorial",
         precio: 8000,
         stock: 5,

@@ -1,13 +1,24 @@
-import "./ItemList.css";
+// import * as React from 'react';
 
-const ItemList = ({ saludo, cambiarSaludo }) => {
-  //  let nombreUsuario = "Thomas";
+import ProductCard from "../../common/productCard/ProductCard";
+
+
+const ItemList = ( {items} ) => {
   return (
-    <div className="saludo-container">
-      <h2>{saludo}</h2>
-      <button onClick={() => cambiarSaludo("Todo bien y vos?")}>
-        Cambiar saludo
-      </button>
+    <div>
+      <h1>aca van los productos</h1>
+
+      <div style={{width:"100%",
+                  display: "flex", 
+                  justifyContent: "space-evenly", 
+                  flexWrap: "wrap" 
+        }}
+      >
+      {items.map((item) => {
+        return <ProductCard key={item.id} item={item} />;
+      })}
+      </div>
+
     </div>
   );
 };
