@@ -1,12 +1,17 @@
-// import * as React from 'react';
-
 import ProductCard from "../../common/productCard/ProductCard";
 
 
 const ItemList = ( {items} ) => {
   return (
     <div>
-      <h1>aca van los productos</h1>
+      <h1 style={{display: "flex",
+                  alignItems: "center",
+                  justifyContent:  "center",
+                  height: "15vh",
+                  fontWeight: "bold",
+    }}>
+        Productos
+      </h1>
 
       <div style={{width:"100%",
                   display: "flex", 

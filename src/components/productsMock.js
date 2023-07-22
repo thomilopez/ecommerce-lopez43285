@@ -5,7 +5,7 @@ export let products = [
         precio: 2500,
         stock: 5,
         description: "Delantal color celeste con animales",
-        category: "Delantales",
+        category: "delantales",
         img: "https://res.cloudinary.com/dycbxhbig/image/upload/v1689660702/qgs184cjdj5jssbh8jd5.jpg",
 
     },
@@ -15,7 +15,7 @@ export let products = [
         precio: 2500,
         stock: 5,
         description: "Delantal color gris con animales",
-        category: "Delantales",
+        category: "delantales",
         img: "https://res.cloudinary.com/dycbxhbig/image/upload/v1689660702/oveopctmwshygtfle4il.jpg",
 
     },
@@ -25,7 +25,7 @@ export let products = [
         precio: 2500,
         stock: 5,
         description: "Delantal color blanco con arcoiris",
-        category: "Delantales",
+        category: "delantales",
         img: "https://res.cloudinary.com/dycbxhbig/image/upload/v1689660702/dchfwtwnjw7z1fxsgjmn.jpg",
 
     },
@@ -35,7 +35,7 @@ export let products = [
         precio: 2000,
         stock: 5,
         description: "Caña de pescar y 5 pescados",
-        category: "Juegos",
+        category: "juegos",
         img: "https://res.cloudinary.com/dycbxhbig/image/upload/v1689660702/qiridwwzi0ld6ewpkg7h.jpg",
 
     },
@@ -45,7 +45,7 @@ export let products = [
         precio: 6000,
         stock: 5,
         description: "Gimnasio + play mant + 5 muñecos colgantes",
-        category: "Juegos",
+        category: "juegos",
         img: "https://res.cloudinary.com/dycbxhbig/image/upload/v1689660702/xvhfosrgg1p0qgzlocwq.jpg",
 
     },
@@ -55,7 +55,7 @@ export let products = [
         precio: 2500,
         stock: 5,
         description: "Rompecabezas didacticos",
-        category: "Juegos",
+        category: "juegos",
         img: "https://res.cloudinary.com/dycbxhbig/image/upload/v1689660702/rechqkknogb8xddqcrbc.jpg",
 
     },
@@ -65,7 +65,7 @@ export let products = [
         precio: 8000,
         stock: 5,
         description: "Tablero sensorial + pizarron",
-        category: "Juegos",
+        category: "juegos",
         img: "https://res.cloudinary.com/dycbxhbig/image/upload/v1689660702/jop6pricsexior44kkls.jpg",
 
     },
