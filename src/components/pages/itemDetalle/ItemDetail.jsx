@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { products } from "../../productsMock";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CounterContainer from "../../common/counter/CounterConteiner";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { CartContext } from "../../../context/CartContext";
 
 
 const ItemDetail = () => {
 
+const { addToCart } = useContext(CartContext);
+
     const [producto, setProducto] = useState({});
 
     const {id} = useParams ()
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         let productoSelec = products.find ((item) => item.id === +id);
         const buscar = new Promise ((res) => {
@@ -24,9 +28,10 @@ const ItemDetail = () => {
     },[id]);
     
     const onAdd = (cantidad) => {
-            console.log (cantidad)
-    
-    }
+        let productCart = { ...producto, quantity: cantidad}
+        addToCart(productCart);
+        navigate("/carrito")    
+    };
     
         return (
             <div style={{width: "100%",
