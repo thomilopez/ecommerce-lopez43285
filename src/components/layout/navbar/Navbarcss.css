@@ -17,12 +17,12 @@
   flex-direction: row;
   padding-right: 20px;
   padding-top: 20px;
-  width: 300px;
-  justify-content: space-around;
+  width: 500px;
+  justify-content: space-between;
 }
 
 .botton {
-  background-color: rgb(73, 96, 116);
+  background-color: rgb(255, 255, 255);
   padding: 10px 10px;
   color: black;
   width: 100px;

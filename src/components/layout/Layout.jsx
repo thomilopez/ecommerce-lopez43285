@@ -6,7 +6,10 @@ const layout = () => {
     return (
     <>
         <Navbar/>
+        <div style={{display:"flex", flexDirection: "column", minHeight:"100vh", backgroundColor: "lightYellow"}}>
         <Outlet/>
+
+        </div>
         <Footer/>
     </>
     );

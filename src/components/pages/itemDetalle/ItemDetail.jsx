@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { products } from "../../productsMock";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import CounterContainer from "../../common/counter/CounterConteiner";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,29 +7,40 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CartContext } from "../../../context/CartContext";
-
+import Swal from 'sweetalert2'
+import { db } from "../../../firebaseConfig";
+import { getDoc, collection, doc } from "firebase/firestore"
 
 const ItemDetail = () => {
 
-const { addToCart } = useContext(CartContext);
+const { addToCart, cantidadXId } = useContext(CartContext);
 
     const [producto, setProducto] = useState({});
 
     const {id} = useParams ()
-    const navigate = useNavigate();
+
+    const totalCantidad = cantidadXId(id);
 
     useEffect(() => {
-        let productoSelec = products.find ((item) => item.id === +id);
-        const buscar = new Promise ((res) => {
-            res(productoSelec)
-        });
-        buscar.then(res => setProducto(res))
+
+        let productsCollection = collection(db, "productos");
+        let productRef = doc(productsCollection, id);
+        getDoc(productRef).then((res) => {
+            setProducto({...res.data(), id: res.id})
+        })
+
     },[id]);
     
     const onAdd = (cantidad) => {
         let productCart = { ...producto, quantity: cantidad}
         addToCart(productCart);
-        navigate("/carrito")    
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Tu producto fue agregado al carrito!',
+            showConfirmButton: false,
+            timer: 1500
+        })
     };
     
         return (
@@ -39,9 +49,7 @@ const { addToCart } = useContext(CartContext);
                         flexDirection:"column",
                         alignItems: "center",
                         justifyContent: "center",
-                        height: "90vh",
-                    
-                        
+                        height: "90vh",                                           
             }}
             >
                 <Card sx={{ maxWidth: 345 }}>
@@ -64,8 +72,15 @@ const { addToCart } = useContext(CartContext);
             <CardActions>
             </CardActions>
         </Card>
-        
-            <CounterContainer stock={producto.stock} onAdd={onAdd} />
+            {producto.stock > 0 ?(
+                <CounterContainer 
+                    stock={producto.stock} 
+                    onAdd={onAdd} 
+                    initial={totalCantidad}
+                />
+            ) : (
+                <h2>No hay stock</h2>
+            )}
         </div>
     
     
