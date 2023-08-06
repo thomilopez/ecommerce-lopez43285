@@ -1,25 +1,51 @@
 import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { db } from "../../../firebaseConfig";
+import { addDoc, collection, serverTimestamp, updateDoc, doc } from "firebase/firestore";
+import { Link } from "react-router-dom";
+import { CartContext } from "../../../context/CartContext";
+import { useContext, useState } from "react";
 
 const FormularioFormik = () => {
+    const { cart, totalPrecio } = useContext(CartContext);
+    const [ orderId, setOrderId ] = useState("");
+    let total = totalPrecio(); 
     const { handleSubmit, handleChange, errors } = useFormik({
-        initialValues: {
+    initialValues: {
             name: "",
             email: "",
-            edad: "",
+            age: "",
             password: "",
             repetPassword: "",
-    },
+        },
+    
+    
     onSubmit: (data) => {
-        console.log(data);
+        
+        let order = {
+            buyer: data,
+            items: cart,
+            total,
+            date: serverTimestamp(),
+        };
+        
+        const ordersCollection = collection(db, "orders");
+        addDoc(ordersCollection, order).then((res)=> setOrderId(res.id));
+
+        cart.forEach ((productos) => {
+            updateDoc(doc(db, "productos", productos.id),{
+                stock: productos.stock - productos.quantity,
+            });
+        });
     },
+    
     validationSchema: Yup.object({
         name: Yup.string()
             .required("Este campo es obligatorio")
             .min(3, "El nombre debe tener al menos 3 caracteres y un maximo de 10")
             .max(10),
-        edad: Yup.string()
+        age: Yup.string()
             .required("Este campo es obligatorio")
             .min(2, "La edad no es valida")
             .max(3),
@@ -35,9 +61,7 @@ const FormularioFormik = () => {
             .required()
             .oneOf([Yup.ref("password")], "Las contraseñas no coinciden"),
     }),
-    validateOnChange: false,
 });
-  console.log(errors);
 
   return (
     <div style={{   display: "flex",
@@ -45,31 +69,37 @@ const FormularioFormik = () => {
                     padding: "40px",
                     flexDirection:"column",
                     alignItems: "center",
-                    justifyContent: "",  }}>
-        <h2>Crea tu cuenta</h2>
-      <form onSubmit={handleSubmit}>
+                    justifyContent: "center",  }}>
+        <h2>Completa tus datos, para finalizar tu compra</h2>
+
+    {orderId ? (
+        <div>
+            <h3>Gracias por su compra.</h3>
+            <h4>Su numero de comprar es: {orderId}</h4>
+            <Link to="/">Volver a comprar</Link>
+        </div>
+    ) : (
+
+    <form onSubmit={handleSubmit}>
         <TextField
             type="text"
-            label="Nombre"
+            label="name"
             variant="outlined"
             error={errors.name ? true : false}
             name="name"
             onChange={handleChange}
             helperText={errors.name}
-        />
-        </form>
-        <form onSubmit={handleSubmit}>
+            />
+
         <TextField
-            type="text"
-            label="Edad"
+            type="number"
+            label="age"
             variant="outlined"
-            error={errors.edad ? true : false}
-            edad ="edad"
+            error={errors.age ? true : false}
+            name ="age"
             onChange={handleChange}
-            helperText={errors.edad}
-        />
-        </form>
-        <form onSubmit={handleSubmit}>
+            helperText={errors.age}
+            />
 
         <TextField
             type="text"
@@ -79,36 +109,34 @@ const FormularioFormik = () => {
             name="email"
             onChange={handleChange}
             helperText={errors.email}
-        />
-        </form>
-        <form onSubmit={handleSubmit}>
+            />
 
         <TextField
-            type="text"
+            type="password"
             label="Contraseña"
             variant="outlined"
             error={errors.password ? true : false}
             name="password"
             onChange={handleChange}
             helperText={errors.password}
-        />
-        </form>
-        <form onSubmit={handleSubmit}>
+            />
 
         <TextField
-            type="text"
+            type="password"
             label="Repetir contraseña"
             variant="outlined"
             error={errors.repetPassword ? true : false}
             name="repetPassword"
             onChange={handleChange}
             helperText={errors.repetPassword}
-        />
+            />
         
+        <Button type="submit" variant="contained">Completar compra</Button>
         </form>
-        <Button type="submit" variant="contained">
-            Enviar
-        </Button>
+    )}
+    
+
+        
     </div>
   );
 };

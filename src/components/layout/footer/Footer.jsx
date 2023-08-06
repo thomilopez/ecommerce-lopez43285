@@ -20,12 +20,12 @@ const Footer = () => {
           <Link to="/">
             <img src="../../../../images/logo.png" alt="" />
           </Link>
-          <h8>
+          <h5>
           Copyright ChicKids - 2022
-          </h8>
-          <h9>
+          </h5>
+          <h6>
           Defensa de las y los consumidores. Para reclamos ingrese aquí
-          </h9>
+          </h6>
           </div>
           <div>
             <div className="tarjetas" style={{}}>

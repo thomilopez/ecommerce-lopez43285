@@ -1,10 +1,13 @@
+import { Skeleton } from "@mui/material";
 import ProductCard from "../../common/productCard/ProductCard";
-
+Skeleton
 
 const ItemList = ( {items} ) => {
+  // let arr = [1, 2, 3, 4, 5, 6, 7];
+
   return (
     <div>
-      <h1 style={{display: "flex",
+      <h1 className={items.length > 0 ? "hay elementos" : ""}style={{display: "flex",
                   alignItems: "center",
                   justifyContent:  "center",
                   height: "15vh",

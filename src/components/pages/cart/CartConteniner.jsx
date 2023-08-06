@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Swal from 'sweetalert2'
+import { Link } from "react-router-dom";
 
 const CartConteniner = () => {
   const { cart, cleanCart, deleteCart, totalPrecio} = useContext(CartContext)
@@ -92,7 +93,7 @@ const CartConteniner = () => {
               
               
             </div>
-           );
+          );
           })}
 
       </div>
@@ -104,7 +105,11 @@ const CartConteniner = () => {
           {
             cart.length > 0 && <button onClick={limpiar}>Vaciar carrito</button>
           }
+
           <h5>El total a pagar es: ${total}</h5>
+          <div>
+          <Link to="/formik">Finalizar compra</Link>
+          </div>
           </div>
     </div>
   )

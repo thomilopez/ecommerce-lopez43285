@@ -17,7 +17,7 @@ const { addToCart, cantidadXId } = useContext(CartContext);
 
     const [producto, setProducto] = useState({});
 
-    const {id} = useParams ()
+    const { id } = useParams ();
 
     const totalCantidad = cantidadXId(id);
 
@@ -26,8 +26,8 @@ const { addToCart, cantidadXId } = useContext(CartContext);
         let productsCollection = collection(db, "productos");
         let productRef = doc(productsCollection, id);
         getDoc(productRef).then((res) => {
-            setProducto({...res.data(), id: res.id})
-        })
+            setProducto({ ...res.data(), id: res.id});
+        });
 
     },[id]);
     

@@ -1,6 +1,6 @@
 export let products = [
     {
-        id: 1,
+
         titulo: "Delantal #1",
         precio: 2500,
         stock: 5,
@@ -10,7 +10,7 @@ export let products = [
 
     },
     {
-        id: 2,
+
         titulo: "Delantal #2",
         precio: 2500,
         stock: 5,
@@ -20,7 +20,7 @@ export let products = [
 
     },
     {
-        id: 3,
+
         titulo: "Delantal #3",
         precio: 2500,
         stock: 5,
@@ -30,7 +30,7 @@ export let products = [
 
     },
     {
-        id: 4,
+
         titulo: "Caña de pescar",
         precio: 2000,
         stock: 5,
@@ -40,7 +40,7 @@ export let products = [
 
     },
     {
-        id: 5,
+
         titulo: "Gimnasio para bebes",
         precio: 6000,
         stock: 5,
@@ -50,7 +50,7 @@ export let products = [
 
     },
     {
-        id: 6,
+
         titulo: "Rompecabezas",
         precio: 2500,
         stock: 5,
@@ -60,7 +60,7 @@ export let products = [
 
     },
     {    
-        id: 7,
+
         titulo: "Tablero sensorial",
         precio: 8000,
         stock: 5,
