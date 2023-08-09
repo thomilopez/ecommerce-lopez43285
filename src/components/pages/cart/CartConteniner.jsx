@@ -79,8 +79,6 @@ const CartConteniner = () => {
               <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {elemento.titulo}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
                 <h5>{elemento.description}</h5>
                 <h6>Precio Unitario: ${elemento.precio}</h6>
                 <h6>Cantidad = {elemento.quantity}</h6>

@@ -14,20 +14,23 @@ const ItemListConteiner = () => {
 
     useEffect (() => {
         let productsCollection = collection(db, "productos")
-        let consulta;
-        if(categoriasNombre){
-            consulta = query (productsCollection, where("category", "==", categoriasNombre))
-        }else{
-            consulta = productsCollection
-        }
-        
-        getDocs(consulta).then((elemento)=>{
-            let productos = elemento.docs.map( doc =>{
-                return {...doc.data(), id: doc.id}
+        setTimeout(()=>{
+
+            let consulta;
+            if(categoriasNombre){
+                consulta = query (productsCollection, where("category", "==", categoriasNombre))
+            }else{
+                consulta = productsCollection
+            }
+            
+            getDocs(consulta).then((elemento)=>{
+                let productos = elemento.docs.map( doc =>{
+                    return {...doc.data(), id: doc.id}
+                })
+                setItems(productos)
             })
-            setItems(productos)
-        })
-        
+            
+        }, 2000)
         
 
     }, [categoriasNombre]);

@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Card, CardActions, CardContent, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { db } from "../../../firebaseConfig";
@@ -6,6 +6,7 @@ import { addDoc, collection, serverTimestamp, updateDoc, doc } from "firebase/fi
 import { Link } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
 import { useContext, useState } from "react";
+
 
 const FormularioFormik = () => {
     const { cart, totalPrecio } = useContext(CartContext);
@@ -66,75 +67,107 @@ const FormularioFormik = () => {
   return (
     <div style={{   display: "flex",
                     width: "100%",  
-                    padding: "40px",
+                    padding: "80px",
+                    height: "90vh",
                     flexDirection:"column",
                     alignItems: "center",
-                    justifyContent: "center",  }}>
+                    justifyContent: "space-around",  }}>
         <h2>Completa tus datos, para finalizar tu compra</h2>
 
     {orderId ? (
         <div>
-            <h3>Gracias por su compra.</h3>
-            <h4>Su numero de comprar es: {orderId}</h4>
-            <Link to="/">Volver a comprar</Link>
+            <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+                    <Typography variant="h5" component="div">
+                    Gracias por su compra!
+                    </Typography>
+                    <Typography variant="body2">
+                    Su numero de comprar es: {orderId}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Link to="/">Volver a comprar</Link>
+                </CardActions>
+            </Card>
+                    
+
         </div>
     ) : (
-
-    <form onSubmit={handleSubmit}>
-        <TextField
-            type="text"
-            label="name"
-            variant="outlined"
-            error={errors.name ? true : false}
-            name="name"
-            onChange={handleChange}
-            helperText={errors.name}
-            />
-
-        <TextField
-            type="number"
-            label="age"
-            variant="outlined"
-            error={errors.age ? true : false}
-            name ="age"
-            onChange={handleChange}
-            helperText={errors.age}
-            />
-
-        <TextField
-            type="text"
-            label="Email"
-            variant="outlined"
-            error={errors.email ? true : false}
-            name="email"
-            onChange={handleChange}
-            helperText={errors.email}
-            />
-
-        <TextField
-            type="password"
-            label="Contraseña"
-            variant="outlined"
-            error={errors.password ? true : false}
-            name="password"
-            onChange={handleChange}
-            helperText={errors.password}
-            />
-
-        <TextField
-            type="password"
-            label="Repetir contraseña"
-            variant="outlined"
-            error={errors.repetPassword ? true : false}
-            name="repetPassword"
-            onChange={handleChange}
-            helperText={errors.repetPassword}
-            />
         
-        <Button type="submit" variant="contained">Completar compra</Button>
-        </form>
-    )}
+
+            <form onSubmit={handleSubmit}>
+                <div>
+
+                <TextField
+                    type="text"
+                    label="name"
+                    variant="outlined"
+                    error={errors.name ? true : false}
+                    name="name"
+                    onChange={handleChange}
+                    helperText={errors.name}
+                    />
+                </div>
+                <div>
+
+                <TextField
+                    type="number"
+                    label="age"
+                    variant="outlined"
+                    error={errors.age ? true : false}
+                    name ="age"
+                    onChange={handleChange}
+                    helperText={errors.age}
+                    />
+                </div>
+                <div>
+
+                <TextField
+                    type="text"
+                    label="Email"
+                    variant="outlined"
+                    error={errors.email ? true : false}
+                    name="email"
+                    onChange={handleChange}
+                    helperText={errors.email}
+                    />
+                </div>
+                <div>
+                <TextField
+                    type="password"
+                    label="Contraseña"
+                    variant="outlined"
+                    error={errors.password ? true : false}
+                    name="password"
+                    onChange={handleChange}
+                    helperText={errors.password}
+                    />
+                </div>
+                <div>
+
+                <TextField
+                    
+                    type="password"
+                    label="Repetir contraseña"
+                    variant="outlined"
+                    error={errors.repetPassword ? true : false}
+                    name="repetPassword"
+                    onChange={handleChange}
+                    helperText={errors.repetPassword}
+                    />
+                
+                </div>
+                <div>
+
+                <Button type="submit" variant="contained">Completar compra</Button>
+                </div>
+                </form>
+            )}
     
+        
+
+
+
 
         
     </div>

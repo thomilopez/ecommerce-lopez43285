@@ -50,42 +50,58 @@ const { addToCart, cantidadXId } = useContext(CartContext);
                         alignItems: "center",
                         justifyContent: "center",
                         height: "90vh",                                           
-            }}
-            >
+                        }}>
+
                 <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-            component="img"
-            alt=""
-            height="300"
-            image={producto.img}
-            />
-            <CardContent>
-            <Typography gutterBottom variant="h3" component="div">
-                {producto.titulo}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                <h4>{producto.description}</h4>
-                <h5>${producto.precio}</h5>
-                
-            </Typography>
-            </CardContent>
-            <CardActions>
-            </CardActions>
-        </Card>
-            {producto.stock > 0 ?(
-                <CounterContainer 
+                        <CardMedia
+                        component="img"
+                        alt=""
+                        height="300"
+                        image={producto.img}
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h4" component="div">
+                            <h3>{producto.titulo}</h3>
+                            <h4>{producto.description}</h4>
+                            <h5>${producto.precio}</h5>
+                        </Typography>
+                        </CardContent>
+                        <CardActions>
+                        </CardActions>
+                </Card>
+
+                {(typeof(totalCantidad) === "undefined" || producto.stock > totalCantidad) && 
+                producto.stock > 0 && (
+                    <CounterContainer 
                     stock={producto.stock} 
                     onAdd={onAdd} 
                     initial={totalCantidad}
                 />
-            ) : (
-                <h2>No hay stock</h2>
-            )}
+                )}
+
+                {producto.stock === 0 && <h2>No hay stock</h2>}
+                {typeof totalCantidad !== "undefined" && 
+                totalCantidad === producto.stock && (
+                    <h4>Tenes el maximo stock en el carrito</h4>
+                )}
+
         </div>
     
     
-        );
-    };
+    );
+};
 
 
 export default ItemDetail
+
+
+
+{/* {producto.stock > 0 ?(
+    <CounterContainer 
+        stock={producto.stock} 
+        onAdd={onAdd} 
+        initial={totalCantidad}
+    />
+) : (
+    <h2>No hay stock</h2>
+)} */}
